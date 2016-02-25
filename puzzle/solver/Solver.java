@@ -1,3 +1,5 @@
+package puzzle.solver;
+
 import java.util.Random;
 
 public class Solver {

@@ -1,3 +1,5 @@
+package puzzle.solver;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.awt.Point;
