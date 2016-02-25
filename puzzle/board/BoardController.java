@@ -33,8 +33,6 @@ public class BoardController implements ActionListener{
 		Point p = new Point(((TileView)e.getSource()).getPosition());
 		int deltaX = (int)(p.getX() - model.getBlankPosition().getX());
 		int deltaY = (int)(p.getY() - model.getBlankPosition().getY());
-		System.out.println("X: " + p.getX() + ", Y: " + p.getY());
-		System.out.println("Delta X: " + deltaX + ", Delta Y: " + deltaY);
 
 		if (Math.abs(deltaX) + Math.abs(deltaY) != 1) {
 			return;
@@ -59,8 +57,6 @@ public class BoardController implements ActionListener{
 		int x = (int)model.getBlankPosition().getX();
 		int y = (int)model.getBlankPosition().getY();
 
-		System.out.println("X: " + x + ", Y: " + y);
-		System.out.println("Action: " + a);
 		int row = model.getRow();
 		int col = model.getCol();
 
