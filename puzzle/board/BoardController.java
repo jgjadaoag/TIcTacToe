@@ -15,7 +15,7 @@ public class BoardController implements ActionListener{
 	public BoardController(int row, int col) {
 		tileController = new TileController[row][col];
 		view = new BoardView(row, col);
-		model = new Board(row, col, new Point(row - 1, col - 1));
+		model = new Board(row, col, new Point(col - 1, row - 1));
 
 		for(int iii = 0; iii < row; iii++) {
 			for(int jjj = 0; jjj < col; jjj++) {
@@ -31,8 +31,10 @@ public class BoardController implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		Point p = new Point(((TileView)e.getSource()).getPosition());
-		int deltaX = p.getX() - board.getBlankPosition().getX();
-		int deltaY = p.getY() - board.getBlankPosition().getY();
+		int deltaX = (int)(p.getX() - model.getBlankPosition().getX());
+		int deltaY = (int)(p.getY() - model.getBlankPosition().getY());
+		System.out.println("X: " + p.getX() + ", Y: " + p.getY());
+		System.out.println("Delta X: " + deltaX + ", Delta Y: " + deltaY);
 
 		if (Math.abs(deltaX) + Math.abs(deltaY) != 1) {
 			return;
@@ -40,63 +42,59 @@ public class BoardController implements ActionListener{
 
 		Action a;
 		if(deltaX == -1 ) {
-			a = LEFT;
+			a = Action.LEFT;
 		} else if (deltaX == 1) {
-			a = RIGHT;
-		} else if(deltaY == -1 ) {
-			a = DOWN;
-		} else (deltaY == 1) {
-			a = UP;
+			a = Action.RIGHT;
+		} else if(deltaY == 1 ) {
+			a = Action.DOWN;
+		} else { //deltaY == -1
+			a = Action.UP;
 		}
 
-		move(a);
+		System.out.println(move(a));
 		
 	}
 
 	public boolean move(Action a) {
-		int x = (int)board.getBlankPosition().getX();
-		int y = (int)board.getBlankPosition().getY();
+		int x = (int)model.getBlankPosition().getX();
+		int y = (int)model.getBlankPosition().getY();
 
-		int row = board.getRow();
-		int col = board.getCol();
+		System.out.println("X: " + x + ", Y: " + y);
+		System.out.println("Action: " + a);
+		int row = model.getRow();
+		int col = model.getCol();
 
 	
-		if(y == 0 && a == UP) {
+		if(y == 0 && a == Action.UP) {
 			return false;
-		}
-
-		if(y == row && a == DOWN) {
+		} else if(y == row - 1 && a == Action.DOWN) {
 			return false;
-		}
-
-		if(x == 0 && a == LEFT) {
+		} else if(x == 0 && a == Action.LEFT) {
 			return false;
-		}
-
-		if(x == col && a == RIGHT) {
+		} else if(x == col - 1&& a == Action.RIGHT) {
 			return false;
 		}
 
 		switch(a) {
 			case UP:
-				tiles[y][x].swap(tiles[y-1][x]);
+				tileController[y][x].swap(tileController[y-1][x]);
 				y--;
 				break;
 			case DOWN:
-				tiles[y][x].swap(tiles[y+1][x]);
+				tileController[y][x].swap(tileController[y+1][x]);
 				y++;
 				break;
 			case RIGHT:
-				tiles[y][x].swap(tiles[y][x+1]);
+				tileController[y][x].swap(tileController[y][x+1]);
 				x++;
 				break;
 			case LEFT:
-				tiles[y][x].swap(tiles[y][x-1]);
+				tileController[y][x].swap(tileController[y][x-1]);
 				x--;
 				break;
 		}
 
-		board.changeBlankPosition(x,y);
+		model.changeBlankPosition(x,y);
 
 		return true;
 	}

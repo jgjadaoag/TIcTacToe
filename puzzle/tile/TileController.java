@@ -14,6 +14,11 @@ public class TileController {
 		view.addActionListener(l);
 	}
 
+	public TileController(TileController tc) {
+		model = new Tile(tc.model);
+		view = new TileView(tc.view);
+	}
+
 	public void swap(TileController other) {
 		Tile holder = other.model;
 		other.model = model;
@@ -22,6 +27,9 @@ public class TileController {
 		Point p = new Point(model.getPosition());
 		model.setPosition(other.model.getPosition());
 		other.model.setPosition(p);
+
+		view.update(model);
+		other.getView().update(other.model);
 	}
 
 	public TileView getView() {
