@@ -98,19 +98,19 @@ class State {
 		int x = (int)space.getX();
 		int y = (int)space.getY();
 
-		if(y == 0) {
+		if(y == 0 && a == UP) {
 			return false;
 		}
 
-		if(y == row) {
+		if(y == row && a == DOWN) {
 			return false;
 		}
 
-		if(x == 0) {
+		if(x == 0 && a == LEFT) {
 			return false;
 		}
 
-		if(x == col) {
+		if(x == col && a == RIGHT) {
 			return false;
 		}
 

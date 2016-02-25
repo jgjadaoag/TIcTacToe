@@ -27,4 +27,8 @@ public class TileController {
 	public TileView getView() {
 		return view;
 	}
+
+	public Point getPosition() {
+		return model.getPosition();
+	}
 }

@@ -20,5 +20,13 @@ public class Board {
 	public int getCol() {
 		return col;
 	}
+
+	public Point getBlankPosition() {
+		return blankPosition;
+	}
+
+	public void changeBlankPosition(int x, int y) {
+		blankPosition.setLocation(x, y);
+	}
 }
 
