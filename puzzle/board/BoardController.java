@@ -2,6 +2,7 @@ package puzzle.board;
 
 import java.awt.Point;
 import java.awt.event.*;
+import javax.swing.JOptionPane;
 
 import puzzle.tile.TileController;
 import puzzle.tile.TileView;
@@ -49,7 +50,11 @@ public class BoardController implements ActionListener{
 			a = Action.UP;
 		}
 
-		System.out.println(move(a));
+		if(move(a) && goalTest()) {
+			if(JOptionPane.showConfirmDialog(view, "YOU WIN\nTry again?", "You Win", JOptionPane.YES_NO_OPTION) == 1) {
+				System.exit(0);
+			}
+		}
 		
 	}
 
@@ -93,5 +98,36 @@ public class BoardController implements ActionListener{
 		model.changeBlankPosition(x,y);
 
 		return true;
+	}
+
+	public boolean goalTest() {
+		for(int iii = 0; iii < model.getRow(); iii++) {
+			for(int jjj = 0; jjj < model.getCol(); jjj++) {
+				if(tileController[iii][jjj].getValue() != iii * model.getRow() + jjj + 1 &&
+						tileController[iii][jjj].getValue() != 0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	public int[][] getValues() {
+		int[][] values = new int[model.getRow()][model.getCol()];
+		for(int iii = 0; iii < model.getRow(); iii++) {
+			for(int jjj = 0; jjj < model.getCol(); jjj++) {
+				values[iii][jjj] = tileController[iii][jjj].getValue();
+			}
+		}
+
+		return values;
+	}
+
+	public int getRow() {
+		return model.getRow();
+	}
+
+	public int getCol() {
+		return model.getCol();
 	}
 }

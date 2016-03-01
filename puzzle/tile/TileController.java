@@ -39,4 +39,8 @@ public class TileController {
 	public Point getPosition() {
 		return model.getPosition();
 	}
+
+	public int getValue() {
+		return model.getNumber();
+	}
 }

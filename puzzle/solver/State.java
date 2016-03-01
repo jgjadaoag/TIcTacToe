@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.awt.Point;
 
-class State {
+public class State {
 	private int[][] board;
 	int cost;
 	int distance;
@@ -23,10 +23,10 @@ class State {
 			}
 		}
 		cost = 0;
-		distance = 0;
 		this.row = row;
 		this.col = col;
 		this.parent = new LinkedList<Action>();
+		distance = computeDistance();
 	}
 
 	public State(int[][] board) {
@@ -58,7 +58,7 @@ class State {
 			actionList.add(Action.UP);
 		}
 
-		if(y != row) {
+		if(y != row - 1) {
 			actionList.add(Action.DOWN);
 		}
 
@@ -66,7 +66,7 @@ class State {
 			actionList.add(Action.LEFT);
 		}
 
-		if(x != col) {
+		if(x != col - 1) {
 			actionList.add(Action.RIGHT);
 		}
 
@@ -141,6 +141,49 @@ class State {
 
 	public boolean goalTest() {
 		return distance == 0;
+	}
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public String toString() {
+		String s = "";
+		for(Action a: parent) {
+			s += a.toString();
+		}
+		return s;
+	}
+
+	public boolean equals(Object st) {
+		if(!(st instanceof State)) {
+			return false;
+		}
+		State s = (State)st;
+		for(int iii = 0; iii < row; iii++) {
+			for (int jjj = 0; jjj < col; jjj++) {
+				if(board[iii][jjj] != s.board[iii][jjj]) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	public int hashCode() {
+		return parent.size() * 31;
+	}
+
+	public String toString2() {
+		String s = "";
+		for(int iii = 0; iii < row; iii++) {
+			for(int jjj = 0; jjj < col; jjj++) {
+				s += board[iii][jjj] + " ";
+			}
+			s+= "\n";
+		}
+
+		return s;
 	}
 
 }
