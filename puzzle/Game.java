@@ -12,18 +12,38 @@ public class Game {
 	public static void main(String[] args) {
 		final int ROW = 3;
 		final int COL = 3;
+		final int TILE_SIZE = 200;
+		final int IMAGE_NUMBER = 3;
+
+		JFrame solutionFrame = new JFrame("Solution");
+		solutionFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		solutionFrame.setPreferredSize(new Dimension(650, 700));
 
 		JFrame mainFrame = new JFrame("8-Puzzle");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setPreferredSize(new Dimension(600,720));
-		//mainFrame.setLayout(new GridLayout(4, 1));
+		mainFrame.setPreferredSize(new Dimension(650,750));
 		mainFrame.setLayout(new FlowLayout());
 
-		final BoardController board = new BoardController(ROW, COL);
+		final BoardController board = new BoardController(ROW, COL, TILE_SIZE, 0);
+		final BoardController solutionBoard = new BoardController(ROW, COL, TILE_SIZE, 0, false);
+
+		JButton[] imageSelect = new JButton[IMAGE_NUMBER+1];
+		Dimension imageSelectDimension = new Dimension(600/(IMAGE_NUMBER + 1), 30);
+		for(int iii = 0; iii <= IMAGE_NUMBER; iii++) {
+			imageSelect[iii] = new JButton("" + iii);
+			imageSelect[iii].addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					board.changeIcon(((JButton)e.getSource()).getText());
+					solutionBoard.changeIcon(((JButton)e.getSource()).getText());
+				}
+			});
+			imageSelect[iii].setPreferredSize(imageSelectDimension);
+			mainFrame.add(imageSelect[iii]);
+		}
 
 		JLabel solutionLabel = new JLabel("Solution: ");
 		final JLabel solutionText = new JLabel();
-		Button solveButton = new Button("Solve!");
+		JButton solveButton = new JButton("Solve!");
 		solveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				State s = Solver.solve(board);
@@ -32,14 +52,15 @@ public class Game {
 			}
 		});
 
-		board.getView().setPreferredSize(new Dimension(550, 550));
-		solveButton.setPreferredSize(new Dimension(550, 50));
+		board.getView().setPreferredSize(new Dimension(600, 550));
+		solveButton.setPreferredSize(new Dimension(600, 50));
 		solutionLabel.setPreferredSize(new Dimension(100, 50));
-		solutionText.setPreferredSize(new Dimension(450, 50));
+		solutionText.setPreferredSize(new Dimension(500, 50));
 		mainFrame.add(board.getView());
 		mainFrame.add(solveButton);
 		mainFrame.add(solutionLabel);
 		mainFrame.add(solutionText);
+
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 	}

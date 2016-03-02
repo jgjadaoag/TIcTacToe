@@ -3,6 +3,8 @@ package puzzle.board;
 import java.awt.Point;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 import puzzle.tile.TileController;
 import puzzle.tile.TileView;
@@ -12,16 +14,27 @@ public class BoardController implements ActionListener{
 	Board model;
 	BoardView view;
 	TileController[][] tileController;
+	int imageNumber;
 
-	public BoardController(int row, int col) {
+	public BoardController(int row, int col, int size, int imageNumber) {
 		tileController = new TileController[row][col];
-		view = new BoardView(row, col);
+		view = new BoardView(row, col, size);
 		model = new Board(row, col, new Point(col - 1, row - 1));
 
 		for(int iii = 0; iii < row; iii++) {
 			for(int jjj = 0; jjj < col; jjj++) {
-				tileController[iii][jjj] = new TileController(this, new Point(jjj, iii),  (1 + jjj + iii * row == row*col)?0:1 + jjj + iii * row );
+				tileController[iii][jjj] = new TileController(this, new Point(jjj, iii),  (1 + jjj + iii * row == row*col)?0:1 + jjj + iii * row, imageNumber);
 				view.add(tileController[iii][jjj].getView());
+			}
+		}
+		this.imageNumber = imageNumber;
+	}
+
+	public BoardController(int row, int col, int size, int imageNumber, boolean enabled) {
+		this(row, col, size, imageNumber);
+		for(TileController[] tcs: tileController) {
+			for(TileController tc: tcs) {
+				tc.getView().setEnabled(false);
 			}
 		}
 	}
@@ -51,9 +64,15 @@ public class BoardController implements ActionListener{
 		}
 
 		if(move(a) && goalTest()) {
+			int row = model.getRow();
+			int col = model.getCol();
+
+			JButton blankButton = (JButton)tileController[row-1][col-1].getView();
+			blankButton.setIcon(new ImageIcon(imageNumber + "/" + row*col + ".jpg"));
 			if(JOptionPane.showConfirmDialog(view, "YOU WIN\nTry again?", "You Win", JOptionPane.YES_NO_OPTION) == 1) {
 				System.exit(0);
 			}
+			blankButton.setIcon(new ImageIcon(imageNumber + "/0.jpg"));
 		}
 		
 	}
@@ -129,5 +148,15 @@ public class BoardController implements ActionListener{
 
 	public int getCol() {
 		return model.getCol();
+	}
+
+	public void changeIcon(String imageNumber) {
+		this.imageNumber = Integer.decode(imageNumber);
+
+		for(TileController[] tcs: tileController) {
+			for(TileController tc: tcs) {
+				tc.changeIcon(this.imageNumber);
+			}
+		}
 	}
 }

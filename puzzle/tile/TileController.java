@@ -1,6 +1,7 @@
 package puzzle.tile;
 
 import java.awt.event.*;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import java.awt.Point;
@@ -9,9 +10,13 @@ public class TileController {
 	Tile model;
 	TileView view;
 
-	public TileController(ActionListener l, Point p, int tileNumber) {
+	public TileController(ActionListener l, Point p, int tileNumber, int imageNumber) {
 		model = new Tile(p, tileNumber);
-		view = new TileView(model, new ImageIcon("1/11-" + tileNumber + ".jpg"));
+		if(imageNumber > 0) {
+			view = new TileView(model, new ImageIcon(imageNumber + "/" + tileNumber + ".jpg"));
+		} else {
+			view = new TileView(model);
+		}
 		view.addActionListener(l);
 	}
 
@@ -29,6 +34,9 @@ public class TileController {
 		model.setPosition(other.model.getPosition());
 		other.model.setPosition(p);
 
+		Icon holderIcon = view.getIcon();
+		view.setIcon(other.getView().getIcon());
+		other.getView().setIcon(holderIcon);
 		view.update(model);
 		other.getView().update(other.model);
 	}
@@ -43,5 +51,15 @@ public class TileController {
 
 	public int getValue() {
 		return model.getNumber();
+	}
+
+	public void changeIcon(int imageNumber) {
+		if(imageNumber > 0) {
+			view.setText("");
+			view.setIcon(new ImageIcon(imageNumber + "/" + model.getNumber() + ".jpg"));
+		} else {
+			view.setIcon(null);
+			view.setText(model.getNumber() + "");
+		}
 	}
 }

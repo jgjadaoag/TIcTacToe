@@ -150,7 +150,7 @@ public class State {
 	public String toString() {
 		String s = "";
 		for(Action a: parent) {
-			s += a.toString();
+			s += a.toString() + " ";
 		}
 		return s;
 	}
