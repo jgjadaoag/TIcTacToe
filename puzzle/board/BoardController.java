@@ -68,11 +68,15 @@ public class BoardController implements ActionListener{
 			int col = model.getCol();
 
 			JButton blankButton = (JButton)tileController[row-1][col-1].getView();
-			blankButton.setIcon(new ImageIcon(imageNumber + "/" + row*col + ".jpg"));
+			if(imageNumber > 0) {
+				blankButton.setIcon(new ImageIcon(imageNumber + "/" + row*col + ".jpg"));
+			}
 			if(JOptionPane.showConfirmDialog(view, "YOU WIN\nTry again?", "You Win", JOptionPane.YES_NO_OPTION) == 1) {
 				System.exit(0);
 			}
-			blankButton.setIcon(new ImageIcon(imageNumber + "/0.jpg"));
+			if(imageNumber > 0) {
+				blankButton.setIcon(new ImageIcon(imageNumber + "/0.jpg"));
+			}
 		}
 		
 	}

@@ -5,17 +5,14 @@ import javax.swing.*;
 
 public class TileView extends JButton {
 	Point position;
-	boolean usingIcon;
 	public TileView(Tile model) {
 		super(model.getNumber() + "");
 		position = new Point(model.getPosition());
-		usingIcon = false;
 	}
 
 	public TileView(Tile model, Icon icon) {
 		super("", icon);
 		position = new Point(model.getPosition());
-		usingIcon = true;
 	}
 
 	public TileView(TileView tv) {
@@ -24,7 +21,7 @@ public class TileView extends JButton {
 	}
 
 	public void update(Tile model) {
-		if(!usingIcon) {
+		if(getIcon() == null) {
 			setText(model.getNumber() + "");
 		}
 		return;

@@ -55,7 +55,7 @@ public class TileController {
 
 	public void changeIcon(int imageNumber) {
 		if(imageNumber > 0) {
-			view.setText("");
+			view.setText(null);
 			view.setIcon(new ImageIcon(imageNumber + "/" + model.getNumber() + ".jpg"));
 		} else {
 			view.setIcon(null);

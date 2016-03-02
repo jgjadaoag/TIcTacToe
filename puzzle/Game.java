@@ -18,14 +18,21 @@ public class Game {
 		JFrame solutionFrame = new JFrame("Solution");
 		solutionFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		solutionFrame.setPreferredSize(new Dimension(650, 700));
+		solutionFrame.setLayout(new FlowLayout());
+
+		final BoardController solutionBoard = new BoardController(ROW, COL, TILE_SIZE, 0, false);
+
+		solutionBoard.getView().setPreferredSize(new Dimension(600,600));
+		solutionFrame.add(solutionBoard.getView());
+		solutionFrame.pack();
+		solutionFrame.setVisible(true);
 
 		JFrame mainFrame = new JFrame("8-Puzzle");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setPreferredSize(new Dimension(650,750));
+		mainFrame.setPreferredSize(new Dimension(650,780));
 		mainFrame.setLayout(new FlowLayout());
 
-		final BoardController board = new BoardController(ROW, COL, TILE_SIZE, 0);
-		final BoardController solutionBoard = new BoardController(ROW, COL, TILE_SIZE, 0, false);
+		final BoardController board = new BoardController(ROW, COL, TILE_SIZE, 1);
 
 		JButton[] imageSelect = new JButton[IMAGE_NUMBER+1];
 		Dimension imageSelectDimension = new Dimension(600/(IMAGE_NUMBER + 1), 30);
@@ -52,7 +59,7 @@ public class Game {
 			}
 		});
 
-		board.getView().setPreferredSize(new Dimension(600, 550));
+		board.getView().setPreferredSize(new Dimension(600, 600));
 		solveButton.setPreferredSize(new Dimension(600, 50));
 		solutionLabel.setPreferredSize(new Dimension(100, 50));
 		solutionText.setPreferredSize(new Dimension(500, 50));
