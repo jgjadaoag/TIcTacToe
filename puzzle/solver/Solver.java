@@ -45,55 +45,40 @@ public class Solver {
 
 
 		while(!openList.isEmpty()) {
-			System.out.println( "============== " + openList.size());
 			State bestNode = openList.poll();
 			openList.remove(bestNode);
 			closedList.add(bestNode);
 
 			if (bestNode.goalTest()) {
-				System.out.println("BEST NODE");
 				return bestNode;
 			}
-			System.out.println("Nyaa ");
 			for(Action a: bestNode.actions()) {
 				State result = bestNode.result(a);
 				if(result == null) {
 					continue;
 				}
-				System.out.println("0------------");
-				System.out.println(result.toString2());
 
 				int resultDistance = result.getDistance();
 				boolean closedContains = closedList.contains(result);
 				boolean openContains = openList.contains(result);
 				if((!openContains && !closedContains)) {
-					System.out.println("1------------");
-					System.out.println(result.toString2());
-					System.out.println(openList.add(result));
+					openList.add(result);
 				} else if (openContains) {
-					System.out.println("Open Contains!");
 					for(State s: openList) {
 						if(s.equals(result)) {
-							System.out.println(s.toString2());
 							if(resultDistance < s.getDistance()) {
-								System.out.println("2------------");
-								System.out.println(result.toString2());
 								openList.remove(s);
-								System.out.println(openList.add(result));
+								openList.add(result);
 							}
 							break;
 						}
 					}
 				} else if (closedContains) {
-					System.out.println("Closed Contains!");
 					for(State s: closedList) {
 						if(s.equals(result)) {
-							System.out.println(s.toString2());
 							if(resultDistance < s.getDistance()) {
-								System.out.println("3------------");
-								System.out.println(result.toString2());
 								closedList.remove(s);
-								System.out.println(openList.add(result));
+								openList.add(result);
 							}
 							break;
 						}
@@ -101,17 +86,6 @@ public class Solver {
 				}
 
 			}
-		}
-		System.out.println("End SOlution");
-		System.out.println("Closed List");
-		for(State s: closedList) {
-			System.out.println("------------------");
-			System.out.println(s.toString2());
-		}
-		System.out.println("Open List");
-		for(State s: openList) {
-			System.out.println("------------------");
-			System.out.println(s.toString2());
 		}
 		return null;
 	}

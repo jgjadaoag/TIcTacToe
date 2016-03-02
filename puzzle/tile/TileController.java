@@ -1,6 +1,7 @@
 package puzzle.tile;
 
 import java.awt.event.*;
+import javax.swing.ImageIcon;
 
 import java.awt.Point;
 
@@ -10,7 +11,7 @@ public class TileController {
 
 	public TileController(ActionListener l, Point p, int tileNumber) {
 		model = new Tile(p, tileNumber);
-		view = new TileView(model);
+		view = new TileView(model, new ImageIcon("1/11-" + tileNumber + ".jpg"));
 		view.addActionListener(l);
 	}
 
