@@ -37,7 +37,7 @@ public class Solver {
 	public static State solve(BoardController board) {
 		PriorityQueue<State> openList = new PriorityQueue<State>(11, new Comparator<State>() {
 			public int compare(State s1, State s2) {
-				return s1.getDistance() - s2.getDistance();
+				return s1.getF() - s2.getF();
 			}
 		});
 		PriorityQueue<State> closedList = new PriorityQueue<State>(openList);
@@ -58,7 +58,7 @@ public class Solver {
 					continue;
 				}
 
-				int resultDistance = result.getDistance();
+				int resultDistance = result.getF();
 				boolean closedContains = closedList.contains(result);
 				boolean openContains = openList.contains(result);
 				if((!openContains && !closedContains)) {
@@ -66,7 +66,7 @@ public class Solver {
 				} else if (openContains) {
 					for(State s: openList) {
 						if(s.equals(result)) {
-							if(resultDistance < s.getDistance()) {
+							if(resultDistance < s.getF()) {
 								openList.remove(s);
 								openList.add(result);
 							}
@@ -76,7 +76,7 @@ public class Solver {
 				} else if (closedContains) {
 					for(State s: closedList) {
 						if(s.equals(result)) {
-							if(resultDistance < s.getDistance()) {
+							if(resultDistance < s.getF()) {
 								closedList.remove(s);
 								openList.add(result);
 							}

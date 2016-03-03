@@ -4,7 +4,6 @@ import java.awt.Point;
 
 public class Tile {
 	int number;
-	String imageLocation = "";
 	Point position;
 	
 	public Tile(Point p, int number) {
@@ -14,7 +13,6 @@ public class Tile {
 
 	public Tile(Tile copy) {
 		number = copy.number;
-		imageLocation = copy.imageLocation;
 		position = new Point(copy.position);
 	}
 
@@ -22,8 +20,8 @@ public class Tile {
 		return number;
 	}
 
-	public String getImageLocation() {
-		return imageLocation;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 	public void setPosition(Point p) {

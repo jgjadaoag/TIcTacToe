@@ -9,8 +9,10 @@ import java.awt.Point;
 public class TileController {
 	Tile model;
 	TileView view;
+	int imageNumber;
 
 	public TileController(ActionListener l, Point p, int tileNumber, int imageNumber) {
+		this.imageNumber = imageNumber;
 		model = new Tile(p, tileNumber);
 		if(imageNumber > 0) {
 			view = new TileView(model, new ImageIcon(imageNumber + "/" + tileNumber + ".jpg"));
@@ -23,6 +25,7 @@ public class TileController {
 	public TileController(TileController tc) {
 		model = new Tile(tc.model);
 		view = new TileView(tc.view);
+		this.imageNumber = tc.imageNumber;
 	}
 
 	public void swap(TileController other) {
@@ -61,5 +64,11 @@ public class TileController {
 			view.setIcon(null);
 			view.setText(model.getNumber() + "");
 		}
+		this.imageNumber = imageNumber;
+	}
+
+	public void setValue(int value) {
+		model.setNumber(value);
+		changeIcon(this.imageNumber);
 	}
 }

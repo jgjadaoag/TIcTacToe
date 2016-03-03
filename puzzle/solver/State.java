@@ -94,6 +94,20 @@ public class State {
 		return tempDistance;
 	}
 	
+	public boolean backMove(Action a) {
+		switch(a) {
+			case UP:
+				return move(Action.DOWN);
+			case DOWN:
+				return move(Action.UP);
+			case LEFT:
+				return move(Action.RIGHT);
+			case RIGHT:
+				return move(Action.LEFT);
+		}
+
+		return false;
+	}
 	public boolean move(Action a) {
 		int x = (int)space.getX();
 		int y = (int)space.getY();
@@ -143,8 +157,8 @@ public class State {
 		return distance == 0;
 	}
 
-	public int getDistance() {
-		return distance;
+	public int getF() {
+		return distance + parent.size();
 	}
 
 	public String toString() {
@@ -184,6 +198,14 @@ public class State {
 		}
 
 		return s;
+	}
+
+	public LinkedList<Action> getPath() {
+		return parent;
+	}
+
+	public int[][] getValues() {
+		return board;
 	}
 
 }

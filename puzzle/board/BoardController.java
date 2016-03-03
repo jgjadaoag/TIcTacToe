@@ -1,5 +1,6 @@
 package puzzle.board;
 
+import java.util.Random;
 import java.awt.Point;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
@@ -9,6 +10,7 @@ import javax.swing.ImageIcon;
 import puzzle.tile.TileController;
 import puzzle.tile.TileView;
 import puzzle.solver.Action;
+import puzzle.solver.State;
 
 public class BoardController implements ActionListener{
 	Board model;
@@ -77,6 +79,8 @@ public class BoardController implements ActionListener{
 			if(imageNumber > 0) {
 				blankButton.setIcon(new ImageIcon(imageNumber + "/0.jpg"));
 			}
+
+			randomize(50);
 		}
 		
 	}
@@ -162,5 +166,42 @@ public class BoardController implements ActionListener{
 				tc.changeIcon(this.imageNumber);
 			}
 		}
+	}
+
+	public void setBoard(int[][] values) {
+		for(int iii = 0; iii < model.getRow(); iii++) {
+			for(int jjj = 0; jjj < model.getCol(); jjj++) {
+				tileController[iii][jjj].setValue(values[iii][jjj]);
+				if(values[iii][jjj] == 0) {
+					model.changeBlankPosition(jjj, iii);
+				}
+			}
+		}
+	}
+
+	public void randomize(int moves) {
+		int[][] board = new int[][]{
+			{1,2,0},{4,5,3},{7,8,6}
+		};
+		State s = new State(board);
+
+		Random r =  new Random();
+		for(int iii = 0; iii < moves; iii++) {
+			switch(r.nextInt(4)) {
+				case 0:
+					s.move(Action.UP);
+					break;
+				case 1:
+					s.move(Action.RIGHT);
+					break;
+				case 2:
+					s.move(Action.LEFT);
+					break;
+				case 3:
+					s.move(Action.DOWN);
+			}
+		}
+
+		setBoard(s.getValues());
 	}
 }
