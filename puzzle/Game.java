@@ -38,7 +38,7 @@ public class Game {
 		mainFrame.setLayout(new FlowLayout());
 
 		final BoardController board = new BoardController(ROW, COL, TILE_SIZE, 0);
-		board.randomize(20);
+		board.randomize(500);
 
 		JButton[] imageSelect = new JButton[IMAGE_NUMBER+1];
 		Dimension imageSelectDimension = new Dimension(600/(IMAGE_NUMBER + 1), 30);
@@ -56,6 +56,12 @@ public class Game {
 
 		JLabel solutionLabel = new JLabel("Solution: ");
 		final JLabel solutionText = new JLabel();
+		JButton reset = new JButton("Reset");
+		reset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				board.randomize(500);
+			}
+		});
 		JButton solveButton = new JButton("Solve!");
 		solveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -68,10 +74,12 @@ public class Game {
 		});
 
 		board.getView().setPreferredSize(new Dimension(600, 600));
-		solveButton.setPreferredSize(new Dimension(600, 50));
+		reset.setPreferredSize(new Dimension(100, 50));
+		solveButton.setPreferredSize(new Dimension(500, 50));
 		solutionLabel.setPreferredSize(new Dimension(100, 50));
 		solutionText.setPreferredSize(new Dimension(500, 50));
 		mainFrame.add(board.getView());
+		mainFrame.add(reset);
 		mainFrame.add(solveButton);
 		mainFrame.add(solutionLabel);
 		mainFrame.add(solutionText);

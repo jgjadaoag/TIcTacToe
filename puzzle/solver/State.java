@@ -208,4 +208,43 @@ public class State {
 		return board;
 	}
 
+	public boolean isSolvable() {
+		int[] numbers = new int[row*col];
+		for(int iii = 0; iii < row; iii++) {
+			for(int jjj = 0; jjj < col; jjj++) {
+				numbers[iii*row + jjj] = board[iii][jjj];
+			}
+		}
+
+		int inversions = 0;
+		for(int iii = 0; iii < row*col; iii++) {
+			for(int jjj = iii; jjj < row*col; jjj++) {
+				if(numbers[jjj] < numbers[iii]) {
+					inversions++;
+				}
+			}
+		}
+
+		return inversions%2 == 0;
+	}
+
+	public static boolean isSolvable(int row, int col, int[][] board) {
+		int[] numbers = new int[row*col];
+		for(int iii = 0; iii < row; iii++) {
+			for(int jjj = 0; jjj < col; jjj++) {
+				numbers[iii*row + jjj] = board[iii][jjj];
+			}
+		}
+
+		int inversions = 0;
+		for(int iii = 0; iii < row*col; iii++) {
+			for(int jjj = iii; jjj < row*col; jjj++) {
+				if(numbers[jjj] < numbers[iii]) {
+					inversions++;
+				}
+			}
+		}
+
+		return inversions%2 == 0;
+	}
 }

@@ -80,7 +80,7 @@ public class BoardController implements ActionListener{
 				blankButton.setIcon(new ImageIcon(imageNumber + "/0.jpg"));
 			}
 
-			randomize(50);
+			randomize(500);
 		}
 		
 	}
@@ -189,19 +189,65 @@ public class BoardController implements ActionListener{
 		for(int iii = 0; iii < moves; iii++) {
 			switch(r.nextInt(4)) {
 				case 0:
-					s.move(Action.UP);
+					if(!s.move(Action.UP)) {
+						s.move(Action.DOWN);
+					}
 					break;
 				case 1:
-					s.move(Action.RIGHT);
+					if(!s.move(Action.RIGHT)){
+						s.move(Action.LEFT);
+					}
 					break;
 				case 2:
-					s.move(Action.LEFT);
+					if(!s.move(Action.LEFT)){
+						s.move(Action.RIGHT);
+					}
 					break;
 				case 3:
-					s.move(Action.DOWN);
+					if(!s.move(Action.DOWN)){
+						s.move(Action.UP);
+					}
 			}
 		}
 
 		setBoard(s.getValues());
+	}
+
+	public void randomize() {
+		int row = model.getRow();
+		int col = model.getCol();
+		boolean[] numbers = new boolean[row*col];
+		int[][] board = new int[row][col];
+
+		Random r =  new Random();
+
+		do {
+			for(int iii = 0; iii < row*col; iii++) {
+				numbers[iii] = false;
+			}
+
+			int random;
+			for(int iii = 0; iii < row; iii++) {
+				for(int jjj = 0; jjj < col; jjj++) {
+					random = r.nextInt(row*col);
+					if(numbers[random]) {
+						for(int kkk = random; kkk < random + row*col; kkk++) {
+							if(!numbers[kkk%(row*col)]) {
+								numbers[kkk%(row*col)] = true;
+								board[iii][jjj] = kkk%(row*col);
+								break;
+							}
+						}
+					} else {
+						numbers[random] = true;
+						board[iii][jjj] = random;
+					}
+
+				}
+			}
+		} while(!State.isSolvable(row, col, board));
+
+		setBoard(board);
+
 	}
 }
