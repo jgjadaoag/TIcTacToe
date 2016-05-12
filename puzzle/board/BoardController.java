@@ -9,8 +9,6 @@ import javax.swing.ImageIcon;
 
 import puzzle.tile.TileController;
 import puzzle.tile.TileView;
-import puzzle.solver.Action;
-import puzzle.solver.State;
 
 public class BoardController implements ActionListener{
 	Board model;

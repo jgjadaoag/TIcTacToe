@@ -6,9 +6,6 @@ import java.awt.event.*;
 import java.util.LinkedList;
 
 import puzzle.board.BoardController;
-import puzzle.solver.Solver;
-import puzzle.solver.State;
-import puzzle.solver.Browser;
 
 public class Game {
 	public static void main(String[] args) {
