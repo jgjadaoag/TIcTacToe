@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.awt.Point;
 
 public class State {
-	private int[][] board;
+	private char[][] board;
 	int cost;
 	int distance;
 	int row;
@@ -13,8 +13,8 @@ public class State {
 	LinkedList<Action> parent;
 	Point space;
 	
-	public State(int row, int col, int[][] board) {
-		this.board = new int[row][col];
+	public State(int row, int col, char[][] board) {
+		this.board = new char[row][col];
 		for(int iii = 0; iii < row; iii++) {
 			for(int jjj = 0; jjj < col; jjj++) {
 				if((this.board[iii][jjj] = board[iii][jjj]) == 0) {
@@ -29,12 +29,12 @@ public class State {
 		distance = computeDistance();
 	}
 
-	public State(int[][] board) {
+	public State(char[][] board) {
 		this(3, 3, board);
 	}
 
 	public State(State s) {
-		this.board = new int[s.row][s.col];
+		this.board = new char[s.row][s.col];
 		this.row = s.row;
 		this.col = s.col;
 		for(int iii = 0; iii < row; iii++) {
@@ -204,47 +204,7 @@ public class State {
 		return parent;
 	}
 
-	public int[][] getValues() {
+	public char[][] getValues() {
 		return board;
-	}
-
-	public boolean isSolvable() {
-		int[] numbers = new int[row*col];
-		for(int iii = 0; iii < row; iii++) {
-			for(int jjj = 0; jjj < col; jjj++) {
-				numbers[iii*row + jjj] = board[iii][jjj];
-			}
-		}
-
-		int inversions = 0;
-		for(int iii = 0; iii < row*col; iii++) {
-			for(int jjj = iii; jjj < row*col; jjj++) {
-				if(numbers[jjj] < numbers[iii]) {
-					inversions++;
-				}
-			}
-		}
-
-		return inversions%2 == 0;
-	}
-
-	public static boolean isSolvable(int row, int col, int[][] board) {
-		int[] numbers = new int[row*col];
-		for(int iii = 0; iii < row; iii++) {
-			for(int jjj = 0; jjj < col; jjj++) {
-				numbers[iii*row + jjj] = board[iii][jjj];
-			}
-		}
-
-		int inversions = 0;
-		for(int iii = 0; iii < row*col; iii++) {
-			for(int jjj = iii; jjj < row*col; jjj++) {
-				if(numbers[jjj] < numbers[iii]) {
-					inversions++;
-				}
-			}
-		}
-
-		return inversions%2 == 0;
 	}
 }

@@ -16,20 +16,18 @@ public class BoardController implements ActionListener{
 	Board model;
 	BoardView view;
 	TileController[][] tileController;
-	int imageNumber;
 
 	public BoardController(int row, int col, int size, int imageNumber) {
 		tileController = new TileController[row][col];
 		view = new BoardView(row, col, size);
-		model = new Board(row, col, new Point(col - 1, row - 1));
+		model = new Board(row, col);
 
 		for(int iii = 0; iii < row; iii++) {
 			for(int jjj = 0; jjj < col; jjj++) {
-				tileController[iii][jjj] = new TileController(this, new Point(jjj, iii),  (1 + jjj + iii * row == row*col)?0:1 + jjj + iii * row, imageNumber);
+				tileController[iii][jjj] = new TileController(this, new Point(jjj, iii));
 				view.add(tileController[iii][jjj].getView());
 			}
 		}
-		this.imageNumber = imageNumber;
 	}
 
 	public BoardController(int row, int col, int size, int imageNumber, boolean enabled) {
@@ -47,91 +45,25 @@ public class BoardController implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		Point p = new Point(((TileView)e.getSource()).getPosition());
-		int deltaX = (int)(p.getX() - model.getBlankPosition().getX());
-		int deltaY = (int)(p.getY() - model.getBlankPosition().getY());
 
-		if (Math.abs(deltaX) + Math.abs(deltaY) != 1) {
-			return;
-		}
-
-		Action a;
-		if(deltaX == -1 ) {
-			a = Action.LEFT;
-		} else if (deltaX == 1) {
-			a = Action.RIGHT;
-		} else if(deltaY == 1 ) {
-			a = Action.DOWN;
-		} else { //deltaY == -1
-			a = Action.UP;
-		}
-
-		if(move(a) && goalTest()) {
+		if(goalTest()) {
 			int row = model.getRow();
 			int col = model.getCol();
 
-			JButton blankButton = (JButton)tileController[row-1][col-1].getView();
-			if(imageNumber > 0) {
-				blankButton.setIcon(new ImageIcon(imageNumber + "/" + row*col + ".jpg"));
-			}
 			if(JOptionPane.showConfirmDialog(view, "YOU WIN\nTry again?", "You Win", JOptionPane.YES_NO_OPTION) == 1) {
 				System.exit(0);
 			}
-			if(imageNumber > 0) {
-				blankButton.setIcon(new ImageIcon(imageNumber + "/0.jpg"));
-			}
 
-			randomize(500);
+            restart();
 		}
 		
-	}
-
-	public boolean move(Action a) {
-		int x = (int)model.getBlankPosition().getX();
-		int y = (int)model.getBlankPosition().getY();
-
-		int row = model.getRow();
-		int col = model.getCol();
-
-	
-		if(y == 0 && a == Action.UP) {
-			return false;
-		} else if(y == row - 1 && a == Action.DOWN) {
-			return false;
-		} else if(x == 0 && a == Action.LEFT) {
-			return false;
-		} else if(x == col - 1&& a == Action.RIGHT) {
-			return false;
-		}
-
-		switch(a) {
-			case UP:
-				tileController[y][x].swap(tileController[y-1][x]);
-				y--;
-				break;
-			case DOWN:
-				tileController[y][x].swap(tileController[y+1][x]);
-				y++;
-				break;
-			case RIGHT:
-				tileController[y][x].swap(tileController[y][x+1]);
-				x++;
-				break;
-			case LEFT:
-				tileController[y][x].swap(tileController[y][x-1]);
-				x--;
-				break;
-		}
-
-		model.changeBlankPosition(x,y);
-
-		return true;
 	}
 
 	public boolean goalTest() {
 		for(int iii = 0; iii < model.getRow(); iii++) {
 			for(int jjj = 0; jjj < model.getCol(); jjj++) {
-				if(tileController[iii][jjj].getValue() != iii * model.getRow() + jjj + 1 &&
-						tileController[iii][jjj].getValue() != 0) {
+				if(tileController[iii][jjj].getSymbol() != iii * model.getRow() + jjj + 1 &&
+						tileController[iii][jjj].getSymbol() != 0) {
 					return false;
 				}
 			}
@@ -139,11 +71,11 @@ public class BoardController implements ActionListener{
 		return true;
 	}
 
-	public int[][] getValues() {
-		int[][] values = new int[model.getRow()][model.getCol()];
+	public char[][] getSymbols() {
+		char[][] values = new char[model.getRow()][model.getCol()];
 		for(int iii = 0; iii < model.getRow(); iii++) {
 			for(int jjj = 0; jjj < model.getCol(); jjj++) {
-				values[iii][jjj] = tileController[iii][jjj].getValue();
+				values[iii][jjj] = tileController[iii][jjj].getSymbol();
 			}
 		}
 
@@ -158,96 +90,17 @@ public class BoardController implements ActionListener{
 		return model.getCol();
 	}
 
-	public void changeIcon(String imageNumber) {
-		this.imageNumber = Integer.decode(imageNumber);
-
-		for(TileController[] tcs: tileController) {
-			for(TileController tc: tcs) {
-				tc.changeIcon(this.imageNumber);
-			}
-		}
-	}
-
-	public void setBoard(int[][] values) {
+	public void setBoard(char[][] values) {
 		for(int iii = 0; iii < model.getRow(); iii++) {
 			for(int jjj = 0; jjj < model.getCol(); jjj++) {
-				tileController[iii][jjj].setValue(values[iii][jjj]);
-				if(values[iii][jjj] == 0) {
-					model.changeBlankPosition(jjj, iii);
-				}
+				tileController[iii][jjj].setSymbol(values[iii][jjj]);
 			}
 		}
 	}
 
-	public void randomize(int moves) {
-		int[][] board = new int[][]{
-			{1,2,0},{4,5,3},{7,8,6}
-		};
-		State s = new State(board);
-
-		Random r =  new Random();
-		for(int iii = 0; iii < moves; iii++) {
-			switch(r.nextInt(4)) {
-				case 0:
-					if(!s.move(Action.UP)) {
-						s.move(Action.DOWN);
-					}
-					break;
-				case 1:
-					if(!s.move(Action.RIGHT)){
-						s.move(Action.LEFT);
-					}
-					break;
-				case 2:
-					if(!s.move(Action.LEFT)){
-						s.move(Action.RIGHT);
-					}
-					break;
-				case 3:
-					if(!s.move(Action.DOWN)){
-						s.move(Action.UP);
-					}
-			}
-		}
-
-		setBoard(s.getValues());
-	}
-
-	public void randomize() {
-		int row = model.getRow();
-		int col = model.getCol();
-		boolean[] numbers = new boolean[row*col];
-		int[][] board = new int[row][col];
-
-		Random r =  new Random();
-
-		do {
-			for(int iii = 0; iii < row*col; iii++) {
-				numbers[iii] = false;
-			}
-
-			int random;
-			for(int iii = 0; iii < row; iii++) {
-				for(int jjj = 0; jjj < col; jjj++) {
-					random = r.nextInt(row*col);
-					if(numbers[random]) {
-						for(int kkk = random; kkk < random + row*col; kkk++) {
-							if(!numbers[kkk%(row*col)]) {
-								numbers[kkk%(row*col)] = true;
-								board[iii][jjj] = kkk%(row*col);
-								break;
-							}
-						}
-					} else {
-						numbers[random] = true;
-						board[iii][jjj] = random;
-					}
-
-				}
-			}
-		} while(!State.isSolvable(row, col, board));
-
-		setBoard(board);
-
-	}
+    public void restart() {
+        setBoard(new char[][]{
+			{' ',' ',' '},{' ',' ',' '},{' ',' ',' '}
+		});
+    }
 }

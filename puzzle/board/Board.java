@@ -3,14 +3,16 @@ package puzzle.board;
 import java.awt.Point;
 
 public class Board {
-	Point blankPosition;
 	int row;
 	int col;
+    char p1;
+    char p2;
 
-	public Board(int row, int col, Point positon) {
+	public Board(int row, int col) {
 		this.row = row;
 		this.col = col;
-		this.blankPosition = positon;
+        this.p1 = 'X';
+        this.p2 = 'O';
 	}
 	
 	public int getRow() {
@@ -19,14 +21,6 @@ public class Board {
 
 	public int getCol() {
 		return col;
-	}
-
-	public Point getBlankPosition() {
-		return blankPosition;
-	}
-
-	public void changeBlankPosition(int x, int y) {
-		blankPosition.setLocation(x, y);
 	}
 }
 

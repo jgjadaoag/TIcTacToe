@@ -6,25 +6,16 @@ import javax.swing.*;
 public class TileView extends JButton {
 	Point position;
 	public TileView(Tile model) {
-		super(model.getNumber() + "");
-		position = new Point(model.getPosition());
-	}
-
-	public TileView(Tile model, Icon icon) {
-		super("", icon);
 		position = new Point(model.getPosition());
 	}
 
 	public TileView(TileView tv) {
-		super(tv.getText(), tv.getIcon());
+		super(tv.getText());
 		position = new Point(tv.position);
 	}
 
 	public void update(Tile model) {
-		if(getIcon() == null) {
-			setText(model.getNumber() + "");
-		}
-		return;
+        setText(model.getSymbol() + "");
 	}
 
 	public Point getPosition() {

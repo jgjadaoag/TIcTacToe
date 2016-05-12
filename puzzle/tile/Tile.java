@@ -3,29 +3,25 @@ package puzzle.tile;
 import java.awt.Point;
 
 public class Tile {
-	int number;
+    char symbol;
 	Point position;
 	
-	public Tile(Point p, int number) {
-		this.number = number;
+	public Tile(Point p) {
+		this.symbol = ' ';
 		this.position = new Point(p);
 	}
 
 	public Tile(Tile copy) {
-		number = copy.number;
+		symbol = copy.symbol;
 		position = new Point(copy.position);
 	}
 
-	public int getNumber() {
-		return number;
+	public char getSymbol() {
+		return symbol;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
-	}
-
-	public void setPosition(Point p) {
-		position.setLocation(p);
+	public void setSymbol(char symbol) {
+		this.symbol = symbol;
 	}
 
 	public Point getPosition() {
