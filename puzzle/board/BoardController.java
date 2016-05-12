@@ -1,6 +1,5 @@
 package puzzle.board;
 
-import java.util.Random;
 import java.awt.Point;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
@@ -10,12 +9,16 @@ import javax.swing.ImageIcon;
 import puzzle.tile.TileController;
 import puzzle.tile.TileView;
 
+import puzzle.ai.AI;
+
 public class BoardController implements ActionListener{
 	Board model;
 	BoardView view;
 	TileController[][] tileController;
 	char currentSymbol;
-	boolean isPlayer1;
+	boolean isPlayer1; //assumes human
+	char humanSymbol;
+	char aiSymbol;
 
 	public BoardController(int row, int col, int size) {
 		tileController = new TileController[row][col];
@@ -31,6 +34,10 @@ public class BoardController implements ActionListener{
 
 		currentSymbol = 'X';
 		isPlayer1 = true;
+		humanSymbol = 'X';
+		aiSymbol = 'O';
+
+		nextMove();
 	}
 
 	public BoardController(int row, int col, int size, int imageNumber, boolean enabled) {
@@ -57,6 +64,15 @@ public class BoardController implements ActionListener{
 			}
 	}
 
+	public void nextMove() {
+		if (isPlayer1) {
+			view.setEnabled(true);
+		} else {
+			view.setEnabled(false);
+			AI.act(this);
+		}
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		Point p = new Point(((TileView)e.getSource()).getPosition());
 		setTile(p);
@@ -71,6 +87,8 @@ public class BoardController implements ActionListener{
 
 			restart();
 		}
+
+		nextMove();
 		
 	}
 
@@ -103,6 +121,14 @@ public class BoardController implements ActionListener{
 
 	public int getCol() {
 		return model.getCol();
+	}
+
+	public char getAISymbol() {
+		return aiSymbol;
+	}
+
+	public char getHumanSymbol() {
+		return humanSymbol;
 	}
 
 	public void setBoard(char[][] values) {
