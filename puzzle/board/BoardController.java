@@ -98,6 +98,8 @@ public class BoardController implements ActionListener{
 			restart();
 		}
 		
+		nextMove();
+		
 	}
 
 	public char goalTest(int row, int col) {
