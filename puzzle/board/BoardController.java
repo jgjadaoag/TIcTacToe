@@ -77,26 +77,69 @@ public class BoardController implements ActionListener{
 		Point p = new Point(((TileView)e.getSource()).getPosition());
 		setTile(p);
 
-		if(goalTest()) {
-			int row = model.getRow();
-			int col = model.getCol();
+		char goal = goalTest((int)p.getY(), (int)p.getX());
 
-			if(JOptionPane.showConfirmDialog(view, "YOU WIN\nTry again?", "You Win", JOptionPane.YES_NO_OPTION) == 1) {
+		if(goal == 'X') {
+			if(JOptionPane.showConfirmDialog(view, "X WIN\nTry again?", "X Win", JOptionPane.YES_NO_OPTION) == 1) {
 				System.exit(0);
 			}
 
 			restart();
 		}
+		
+		else if(goal == 'O') {
+			if(JOptionPane.showConfirmDialog(view, "O WIN\nTry again?", "O Win", JOptionPane.YES_NO_OPTION) == 1) {
+				System.exit(0);
+			}
 
-		nextMove();
+			restart();
+		}
+		
+		else if(goal == '+') {
+			if(JOptionPane.showConfirmDialog(view, "DRAW\nTry again?", "Draw", JOptionPane.YES_NO_OPTION) == 1) {
+				System.exit(0);
+			}
+
+			restart();
+		}
 		
 	}
 
-	public boolean goalTest() {
+	public char goalTest(int row, int col) {
+		char winner = tileController[row][col].getSymbol();
+		
+		if(winner == tileController[row][0].getSymbol() &&
+					tileController[row][0].getSymbol() == tileController[row][1].getSymbol() &&
+					tileController[row][1].getSymbol() == tileController[row][2].getSymbol()) {
+			return winner;
+		}
+		else if(winner == tileController[0][col].getSymbol() &&
+					tileController[0][col].getSymbol() == tileController[1][col].getSymbol() &&
+					tileController[1][col].getSymbol() == tileController[2][col].getSymbol()) {
+			return winner;				
+		}
+		else if(winner == tileController[1][1].getSymbol() &&
+					(row == col || row + col == model.getRow() - 1)) {
+			if(tileController[0][0].getSymbol() == tileController[1][1].getSymbol() &&
+					tileController[1][1].getSymbol() == tileController[2][2].getSymbol()) {
+				return winner;
+			}
+			else if(tileController[2][0].getSymbol() == tileController[1][1].getSymbol() &&
+					tileController[1][1].getSymbol() == tileController[0][2].getSymbol()) {
+				return winner;
+			}
+		}
+		else if(checkTie()) {
+			return '+';
+		}
+		
+		return ' ';
+	}
+	
+	private boolean checkTie() {
 		for(int iii = 0; iii < model.getRow(); iii++) {
-			for(int jjj = 0; jjj < model.getCol(); jjj++) {
-				if(tileController[iii][jjj].getSymbol() != iii * model.getRow() + jjj + 1 &&
-						tileController[iii][jjj].getSymbol() != 0) {
+			for(int jjj = 0; jjj < model.getRow(); jjj++) {
+				if(tileController[iii][jjj].getSymbol() == ' ') {
 					return false;
 				}
 			}
