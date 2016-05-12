@@ -78,25 +78,20 @@ public class BoardController implements ActionListener{
 		setTile(p);
 
 		char goal = goalTest((int)p.getY(), (int)p.getX());
+		String message = null;
 
-		if(goal == model.getP1()) {
-			if(JOptionPane.showConfirmDialog(view, "Player 1 WINS\nTry again?", "Player 1 Wins", JOptionPane.YES_NO_OPTION) == 1) {
-				System.exit(0);
+		if(goal != ' ') {
+			if(goal == model.getP1()) {
+				message = "Player 1 WINS\nTry again?";
 			}
-
-			restart();
-		}
-		
-		else if(goal == model.getP2()) {
-			if(JOptionPane.showConfirmDialog(view, "AI WINS\nTry again?", "AI Wins", JOptionPane.YES_NO_OPTION) == 1) {
-				System.exit(0);
+			else if(goal == model.getP2()) {
+				message = "AI WINS\nTry again?";
 			}
-
-			restart();
-		}
-		
-		else if(goal == '+') {
-			if(JOptionPane.showConfirmDialog(view, "DRAW\nTry again?", "Draw", JOptionPane.YES_NO_OPTION) == 1) {
+			else {
+				message = "DRAW\nTry again?";
+			}
+			
+			if(JOptionPane.showConfirmDialog(view, message, message, JOptionPane.YES_NO_OPTION) == 1) {
 				System.exit(0);
 			}
 
@@ -129,7 +124,8 @@ public class BoardController implements ActionListener{
 				return winner;
 			}
 		}
-		else if(checkTie()) {
+		
+		if(checkTie()) {
 			return '+';
 		}
 		
