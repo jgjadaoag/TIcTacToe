@@ -97,7 +97,7 @@ public class BoardController implements ActionListener{
 
 			restart();
 		}
-		
+
 		nextMove();
 		
 	}
