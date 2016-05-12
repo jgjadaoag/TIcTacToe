@@ -34,6 +34,11 @@ public class TileController {
 		view.setEnabled(false);
 	}
 
+	public void changeSymbol(char symbol) {
+		model.setSymbol(symbol);
+		view.update(model);
+	}
+
 	public void reset() {
 		model.setSymbol(' ');
 		view.update(model);

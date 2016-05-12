@@ -15,10 +15,7 @@ public class BoardController implements ActionListener{
 	Board model;
 	BoardView view;
 	TileController[][] tileController;
-	char currentSymbol;
 	boolean isPlayer1; //assumes human
-	char humanSymbol;
-	char aiSymbol;
 
 	public BoardController(int row, int col, int size) {
 		tileController = new TileController[row][col];
@@ -32,10 +29,7 @@ public class BoardController implements ActionListener{
 			}
 		}
 
-		currentSymbol = 'X';
 		isPlayer1 = true;
-		humanSymbol = 'X';
-		aiSymbol = 'O';
 
 		nextMove();
 	}
@@ -54,14 +48,31 @@ public class BoardController implements ActionListener{
 	}
 
 	public void setTile(Point p) {
-			TileController tc = tileController[(int)p.getY()][(int)p.getX()];
-			tc.setSymbol(currentSymbol);
-			isPlayer1 = !isPlayer1;
-			if (isPlayer1) {
-					currentSymbol = model.getP1();
-			} else {
-					currentSymbol = model.getP2();
+		TileController tc = tileController[(int)p.getY()][(int)p.getX()];
+		if (isPlayer1) {
+			tc.setSymbol(model.getP1());
+		} else {
+			tc.setSymbol(model.getP2());
+		}
+		isPlayer1 = !isPlayer1;
+	}
+
+	public void changeSymbol(char p1, char p2) {
+		char temp;
+		for (TileController[] tcs: tileController) {
+			for (TileController tc: tcs) {
+				temp = tc.getSymbol();
+				if (temp != ' ') {
+					if (temp == model.getP1()) {
+						tc.changeSymbol(p1);
+					} else {
+						tc.changeSymbol(p2);
+					}
+				}
 			}
+		}
+
+		model.changeSymbol(p1, p2);
 	}
 
 	public void nextMove() {
@@ -124,11 +135,11 @@ public class BoardController implements ActionListener{
 	}
 
 	public char getAISymbol() {
-		return aiSymbol;
+		return model.getP2();
 	}
 
 	public char getHumanSymbol() {
-		return humanSymbol;
+		return model.getP1();
 	}
 
 	public void setBoard(char[][] values) {

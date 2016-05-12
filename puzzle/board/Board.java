@@ -30,5 +30,10 @@ public class Board {
 	public char getP2() {
 		return p2;
 	}
+
+	public void changeSymbol(char p1, char p2) {
+		this.p1 = p1;
+		this.p2 = p2;
+	}
 }
 
