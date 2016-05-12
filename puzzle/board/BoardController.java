@@ -97,20 +97,20 @@ public class BoardController implements ActionListener{
 
 		if(goal != ' ') {
 			if(goal == model.getP1()) {
-				message = "Player 1 WINS\nTry again?";
+				message = "Player 1 WINS!";
 			}
 			else if(goal == model.getP2()) {
-				message = "AI WINS\nTry again?";
+				message = "AI WINS!";
 			}
 			else {
-				message = "DRAW\nTry again?";
+				message = "DRAW!";
 			}
 			
-			if(JOptionPane.showConfirmDialog(view, message, message, JOptionPane.YES_NO_OPTION) == 1) {
-				System.exit(0);
-			}
+			JOptionPane.showMessageDialog(view, message, message, JOptionPane.INFORMATION_MESSAGE);
 
-			restart();
+			view.setEnabled(false);
+
+			return;
 		}
 
 		nextMove();
@@ -197,10 +197,17 @@ public class BoardController implements ActionListener{
 	}
 
 	public void restart() {
+		view.setEnabled(true);
 		for(int iii = 0; iii < model.getRow(); iii++) {
 			for(int jjj = 0; jjj < model.getCol(); jjj++) {
 				tileController[iii][jjj].reset();
 			}
 		}
+	}
+
+	public void restart(boolean humanFirst) {
+		restart();
+		isPlayer1 = humanFirst;
+		nextMove();
 	}
 }

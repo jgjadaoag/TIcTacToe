@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.LinkedList;
+import java.util.Random;
 
 import puzzle.board.BoardController;
 
@@ -36,6 +36,7 @@ public class Game {
 		final int ROW = 3;
 		final int COL = 3;
 		final int TILE_SIZE = 200;
+		final Random r = new Random();
 
 
 		final JFrame mainFrame = new JFrame("8-Puzzle");
@@ -46,19 +47,35 @@ public class Game {
 		final BoardController board = new BoardController(ROW, COL, TILE_SIZE);
 
 
-		JButton reset = new JButton("Reset");
-		reset.addActionListener(new ActionListener() {
+		JPanel reset = new JPanel();
+		JButton reset1 = new JButton("New Game: Human First");
+		reset1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				board.restart();
+				board.restart(true);
 			}
 		});
+		JButton reset2 = new JButton("New Game: AI First");
+		reset2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				board.restart(false);
+			}
+		});
+		JButton reset3 = new JButton("New Game: Random");
+		reset3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				board.restart(r.nextBoolean());
+			}
+		});
+		reset.add(reset1);
+		reset.add(reset2);
+		reset.add(reset3);
 
 		final JPanel symbolSettings = new JPanel();
 		final JLabel symbolLabel = new JLabel("Symbol:");
-		final JLabel p1Label = new JLabel("Player1:");
+		final JLabel p1Label = new JLabel("Human: ");
 		final JTextField p1SymbolText = new JTextField(1);
 		p1SymbolText.setDocument(new JTextFieldLimit(1));
-		final JLabel p2Label = new JLabel("Player2:");
+		final JLabel p2Label = new JLabel("AI: ");
 		final JTextField p2SymbolText = new JTextField(1);
 		p2SymbolText.setDocument(new JTextFieldLimit(1));
 		final JButton symbolSettingsButton = new JButton("Set Symbol");
@@ -90,7 +107,6 @@ public class Game {
 
 
 		board.getView().setPreferredSize(new Dimension(600, 600));
-		reset.setPreferredSize(new Dimension(100, 50));
 		mainFrame.add(symbolSettings);
 		mainFrame.add(board.getView());
 		mainFrame.add(reset);
