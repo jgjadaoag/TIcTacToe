@@ -79,16 +79,16 @@ public class BoardController implements ActionListener{
 
 		char goal = goalTest((int)p.getY(), (int)p.getX());
 
-		if(goal == 'X') {
-			if(JOptionPane.showConfirmDialog(view, "X WIN\nTry again?", "X Win", JOptionPane.YES_NO_OPTION) == 1) {
+		if(goal == model.getP1()) {
+			if(JOptionPane.showConfirmDialog(view, "Player 1 WINS\nTry again?", "Player 1 Wins", JOptionPane.YES_NO_OPTION) == 1) {
 				System.exit(0);
 			}
 
 			restart();
 		}
 		
-		else if(goal == 'O') {
-			if(JOptionPane.showConfirmDialog(view, "O WIN\nTry again?", "O Win", JOptionPane.YES_NO_OPTION) == 1) {
+		else if(goal == model.getP2()) {
+			if(JOptionPane.showConfirmDialog(view, "AI WINS\nTry again?", "AI Wins", JOptionPane.YES_NO_OPTION) == 1) {
 				System.exit(0);
 			}
 
