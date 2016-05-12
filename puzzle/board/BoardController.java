@@ -84,6 +84,10 @@ public class BoardController implements ActionListener{
 		}
 	}
 
+	public void click (Point p) {
+		tileController[(int)p.getY()][(int)p.getX()].getView().doClick();
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		Point p = new Point(((TileView)e.getSource()).getPosition());
 		setTile(p);

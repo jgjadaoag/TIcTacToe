@@ -9,7 +9,7 @@ import puzzle.board.BoardController;
 public class AI {
 	public static void act(BoardController board) {
 		Point p = nextMove(board.getSymbols(), board.getAISymbol(), board.getHumanSymbol());
-		if (p != null) board.setTile(p);
+		if (p != null) board.click(p);
 	}
 	public static Point nextMove(char[][] board, char me, char opponent) {
 		LinkedList<Point> freeTiles = new LinkedList<Point>();
