@@ -14,8 +14,10 @@ public class BoardController implements ActionListener{
 	Board model;
 	BoardView view;
 	TileController[][] tileController;
+	char currentSymbol;
+	boolean isPlayer1;
 
-	public BoardController(int row, int col, int size, int imageNumber) {
+	public BoardController(int row, int col, int size) {
 		tileController = new TileController[row][col];
 		view = new BoardView(row, col, size);
 		model = new Board(row, col);
@@ -26,10 +28,13 @@ public class BoardController implements ActionListener{
 				view.add(tileController[iii][jjj].getView());
 			}
 		}
+
+		currentSymbol = 'X';
+		isPlayer1 = true;
 	}
 
 	public BoardController(int row, int col, int size, int imageNumber, boolean enabled) {
-		this(row, col, size, imageNumber);
+		this(row, col, size);
 		for(TileController[] tcs: tileController) {
 			for(TileController tc: tcs) {
 				tc.getView().setEnabled(false);
@@ -41,8 +46,20 @@ public class BoardController implements ActionListener{
 		return view;
 	}
 
+	public void setTile(Point p) {
+			TileController tc = tileController[(int)p.getY()][(int)p.getX()];
+			tc.setSymbol(currentSymbol);
+			isPlayer1 = !isPlayer1;
+			if (isPlayer1) {
+					currentSymbol = model.getP1();
+			} else {
+					currentSymbol = model.getP2();
+			}
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		Point p = new Point(((TileView)e.getSource()).getPosition());
+		setTile(p);
 
 		if(goalTest()) {
 			int row = model.getRow();
@@ -52,7 +69,7 @@ public class BoardController implements ActionListener{
 				System.exit(0);
 			}
 
-            restart();
+			restart();
 		}
 		
 	}
@@ -91,14 +108,17 @@ public class BoardController implements ActionListener{
 	public void setBoard(char[][] values) {
 		for(int iii = 0; iii < model.getRow(); iii++) {
 			for(int jjj = 0; jjj < model.getCol(); jjj++) {
+				tileController[iii][jjj].reset();
 				tileController[iii][jjj].setSymbol(values[iii][jjj]);
 			}
 		}
 	}
 
-    public void restart() {
-        setBoard(new char[][]{
-			{' ',' ',' '},{' ',' ',' '},{' ',' ',' '}
-		});
-    }
+	public void restart() {
+		for(int iii = 0; iii < model.getRow(); iii++) {
+			for(int jjj = 0; jjj < model.getCol(); jjj++) {
+				tileController[iii][jjj].reset();
+			}
+		}
+	}
 }

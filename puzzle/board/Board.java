@@ -22,5 +22,13 @@ public class Board {
 	public int getCol() {
 		return col;
 	}
+
+	public char getP1() {
+		return p1;
+	}
+
+	public char getP2() {
+		return p2;
+	}
 }
 
