@@ -108,7 +108,7 @@ public class BoardController implements ActionListener{
 			
 			JOptionPane.showMessageDialog(view, message, message, JOptionPane.INFORMATION_MESSAGE);
 
-			view.setEnabled(false);
+			lock();
 
 			return;
 		}
@@ -209,5 +209,13 @@ public class BoardController implements ActionListener{
 		restart();
 		isPlayer1 = humanFirst;
 		nextMove();
+	}
+
+	public void lock() {
+		for(int iii = 0; iii < model.getRow(); iii++) {
+			for(int jjj = 0; jjj < model.getCol(); jjj++) {
+				tileController[iii][jjj].lock();
+			}
+		}
 	}
 }

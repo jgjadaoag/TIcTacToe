@@ -90,6 +90,9 @@ public class Game {
 				} else if (p1.equals(p2)) {
 					JOptionPane.showMessageDialog(mainFrame, "Symbols should be different", "Invalid Input", JOptionPane.ERROR_MESSAGE);
 					return;
+				} else if (Character.isWhitespace(p1.charAt(0)) || Character.isWhitespace(p2.charAt(0))) {
+					JOptionPane.showMessageDialog(mainFrame, "Symbols should not be space", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+					return;
 				}
 
 				board.changeSymbol(p1.charAt(0), p2.charAt(0));

@@ -44,4 +44,8 @@ public class TileController {
 		view.update(model);
 		view.setEnabled(true);
 	}
+
+	public void lock() {
+		view.setEnabled(false);
+	}
 }
