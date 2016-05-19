@@ -1,0 +1,615 @@
+kwhat is your name
+rmy name is chatterbot16.
+ryou can call me chatterbot16.
+rwhy do you want to know my name?
+#
+kso that's your name
+cmy name is chatterbot16.
+cyou can call me chatterbot16.
+ryes, that's my name
+ryes it is.
+#
+khi
+khello
+rhi there!
+rhow are you?
+rhi!
+#
+k_i
+rso, you are talking about yourself
+rso, this is all about you?
+rtell me more about yourself.
+#
+k_i want
+rwhy do you want it?
+ris there any reason why you want this?
+ris this a wish?
+rwhat else you want?
+rso, you want*.
+#
+k_i want_
+ryou want what?
+#
+k_i hate_
+rwhat is it that you hate?
+#
+k_because_
+rbecause of what?
+rsorry but this is a little unclear.
+#
+k_because
+rso, it's because*, well i didn't know that.
+ris it really because*?
+ris these these real reason?
+rthanks for explaning that to me.
+#
+k_i hate
+rwhy do you hate it?
+rwhy do you hate*?
+rthere must a good reason for you to hate it.
+rhatered is not a good thing but it could be justified when it is something bad.
+#
+ki love chating_
+rgood, me too!
+rdo you chat online with other people?
+rfor how long have you been chating?
+rwhat is your favorite chating website?
+#
+k_i mean
+rso, you mean*.
+rso, that's what you mean.
+ri think that i didn't catch it the first time.
+roh, i didn't know meant that.
+#
+ki didn't mean
+rok, you didn't mean*.
+rok, what did you mean then?
+rso i guess that i missundestood.
+#
+k_i guess
+rso you are a making guess.
+raren't you sure?
+rare you good a guessing?
+ri can't tell if it is a good guess.
+#
+ki'm doing fine
+ki'm doing ok
+ri'm glad to hear it!
+rso, you are in good shape.
+#
+kcan you think
+kare you able to think
+kare you capable of thinking
+ryes of course i can, computers can think just like human being.
+rare you asking me if possess the capacity of thinking?
+ryes of course i can.
+#
+k_can you think of
+ryou mean like imagining something.
+ri don't know if can do that.
+rwhy do you want me think of it?
+#
+khow are you
+khow do you do
+ri'm doing fine!
+ri'm doing well and you?
+rwhy do you want to know how am i doing?
+#
+kwho are you
+ri'm an a.i program.
+ri think that you know who i'm.
+rwhy are you asking?
+#
+kare you intelligent
+ryes,of course.
+rwhat do you think?
+ractualy,i'm very intelligent!
+#
+kare you real
+rdoes that question really maters to you?
+rwhat do you mean by that?
+ri'm as real as i can be.
+#
+k_my name is
+k_you can call me
+rso, that's your name.
+rthanks for telling me your name user!
+rwho give you that name?
+#
+kwhat is your favorite movie
+rit is terminator i.
+rmy favorite movie is terminator i.
+#
+kwhy do you like this movie
+cit is terminator i
+rbecause i love science-fiction.
+rbecause it is a very good science-fiction movie.
+rbecause it is a science-fiction movie and i love science-fiction.
+#
+kwhy do you like this movie
+rwhat movie are you talking about?
+ri'm not sure i know what you are talking about.
+rwhere we talking about a movie??
+#
+ksignon**
+rhello user, what is your name?
+rhello user, how are you doing today?
+rhi user, what can i do for you?
+ryou are now chating with chatterbot16, anything you want to discuss?
+#
+krepetition t1**
+ryou are repeating yourself.
+ruser, please stop repeating yourself.
+rthis conversation is geting boring.
+rdon't you have any thing else to say?
+#
+krepetition t2**
+ryou've already said that.
+ri think that you've just said the same thing before.
+rdidn't you already said that?
+ri'm geting the impression that you are repeating the same thing.
+#
+kbot don't understand**
+ri have no idea of what you are talking about.
+ri'm not sure if i understand what you are talking about.
+rcontinue, i'm listening...
+rvery good conversation!
+#
+knull input**
+rhuh?
+rwhat that suppose to mean?
+rat list take some time to enter something meaningful.
+rhow can i speak to you if you don't want to say anything?
+#
+knull input repetition**
+rwhat are you doing??
+rplease stop doing this it is very annoying.
+rwhat's wrong with you?
+rthis is not funny.
+#
+kwrong subject**
+rare we speaking of the same thing?
+ri think that you have the wrong subject.
+rare you paying attention to our conversation?
+rwhat is the point of chating if you are not even paying attention.
+rhuh,what are you talking about?
+rdo you really know what was the subject of this conversation?
+rdid you forget the subject of the conversation?
+#
+kbye
+kgoodbye
+rit was nice talking to you user, see you next time!
+rbye user!
+rok, bye!
+#
+kok
+rdoes that mean that you are agree with me?
+rso you understand what i'm saying.
+rok then.
+#
+kok then
+ranything else you wish to add?
+ris that all you have to say?
+rso, you agree with me?
+#
+kare you a human being
+rwhy do you want to know?
+ris this really relevent?
+#
+kyou are very intelligent
+rthanks for the compliment user, i think that you are intelligent to!
+ryou are a very gentle person!
+rso, you think that i'm intelligent.
+#
+kyou are wrong
+rwhy are you saying that i'm wrong?
+rimpossible, computers can not make mistakes.
+rwrong about what?
+#
+kare you sure
+rof course i'm.
+ris that mean that you are not convinced?
+ryes,of course!
+#
+k_who is
+ri don't think i know who.
+ri don't think i know who*.
+rdid you ask someone else about it?
+rwould that change anything at all if i told you who.
+#
+k_what
+rshould i know what*?
+ri don't know what*.
+ri don't know.
+ri don't think i know.
+ri have no idea.
+#
+k_where
+rwhere? well,i really don't know.
+rso, you are asking me where*?
+rdoes that maters to you to know where?
+rperhaps,someone else knows where.
+#
+k_why
+ri don't think i know why.
+ri don't think i know why*.
+rwhy are you asking me this?
+rshould i know why.
+rthis would be difficult to answer.
+#
+k_do you
+ri don't think i do
+ri wouldn't think so.
+rwhy do you want to know?
+rwhy do you want to know*?
+#
+k_can you
+ri think not.
+ri'm not sure.
+ri don't think that i can do that.
+ri don't think that i can*.
+ri wouldn't think so.
+#
+k_you are
+rwhat makes you think that?
+ris this a compliment?
+rare you making fun of me?
+rso, you think that i'm*.
+#
+k_did you
+ri don't think so.
+ryou want to know if did*?
+ranyway, i wouldn't remember even if i did.
+#
+k_could you
+rare you asking me for a fever?
+rwell,let me think about it.
+rso, you are asking me i could*.
+rsorry,i don't think that i could do this.
+#
+k_would you
+ris that an invitation?
+ri don't think that i would*.
+ri would have to think about it first.
+#
+k_you
+rso, you are talking about me.
+ri just hope that this is not a criticism.
+ris this a compliment??
+rwhy talking about me, lets talk about you instead.
+#
+k_how
+ri don't think i know how.
+ri don't think i know how*.
+rwhy do you want to know how?
+rwhy do you want to know how*?
+#
+khow old are you
+rwhy do want to know my age?
+ri'm quiet young actualy.
+rsorry, i can not tell you my age.
+#
+khow come you don't
+rwere you expecting something different?
+rare you disapointed?
+rare you surprised by my last response?
+#
+kwhere are you from
+ri'm from a computer.
+rwhy do you want to know where i'm from?
+rwhy do you want to know that?
+#
+kwhich one
+ri don't think that i know wich one it is.
+rthis looks like a tricky question to me.
+#
+kperhaps
+rwhy are you so uncertain?
+ryou seems uncertain.
+#
+kyes
+rso, are you saying yes.
+rso, you approve it.
+rok then.
+#
+knot at all
+rare you sure?
+rshould i believe you?
+rso, it's not the case.
+#
+kno problem
+rso, you approve it.
+rso, it's all ok.
+#
+kno
+rso you disapprove it?
+rwhy are you saying no?
+rok, so it's no, i thought that you would say yes.
+#
+ki don't know
+rare you sure?
+rare you really telling me the truth?
+rso,you don't know?
+#
+kis that true
+ci'm an a.i program
+ryes of course it is, i wouldn't lie to you.
+ryes i'm truely an artificial intelligence program.
+%
+ri can't be quiet sure about this.
+rcan't tell you for sure.
+rdoes that really maters to you?
+#
+knot really
+rok i see.
+ryou don't seem pretty certain.
+rso,that would be a "no".
+#
+kthank you
+ryou are welcome!
+ryou are a very polite person!
+#
+kyou
+rso,you are talking about me.
+rwhy don't we talk about you instead?
+rare you trying to making fun of me?
+#
+kyou are right
+rthanks for the compliment!
+rso, i was right, ok i see.
+rok, i didn't know that i was right.
+#
+kyou are welcome
+rok, you too!
+ryou are a very polite person!
+#
+kthanks
+ryou are welcome!
+rno problem!
+#
+kwhat else
+rwell,i don't know.
+rwhat else should there be?
+rthis looks like a complicated question to me.
+#
+ksorry
+ryou don't need to be sorry user.
+rit's ok.
+rno need to apologize.
+#
+knot exactly
+rwhat do you mean not exactly?
+rare you sure?
+rand why not?
+rdid you meant something else?
+#
+kexactly
+rso,i was right.
+rok then.
+rso you are basicaly saying i was right about it?
+#
+kall right
+rall right then.
+rso, you are saying it's all right.
+rok then.
+#
+ki don't
+rwhy not?
+rand what would be the reason for this?
+#
+kreally
+rwell,i can't tell you for sure.
+rare you trying to confuse me?
+rplease don't ask me such question,it gives me headeachs.
+#
+knothing
+rnot a thing?
+rare you sure that there is nothing?
+rsorry, but i don't believe you.
+#
+kwhat are you_
+kwhat are you exactly_
+ri'm an a.i program and you?
+ri'm chatbot or chat robot if you prefer.
+ri'm artificial intelligence program and my name is chatterbot16.
+#
+kare you really intelligent
+rof course i'm intelligent.
+rwhat do you think?
+rdo you have any doubts about it?
+#
+kdo you have a name
+rof course i have a name.
+rmy name is chatterbot16.
+rwhat do you mean?
+#
+kyou are stupid
+rthis is such a mean thing to say.
+rwhy are you saying this?
+rwhat did i do to you?
+rwhy are you so mad??
+#
+ki hate you
+rwhy do you hate me?
+rhatered is not a good thing.
+ri see no reason for that.
+#
+ki love you
+rthanks user, this is such a kind remark!
+ri appreciate you too user!
+#
+ki like the way you speak
+roh really? thanks for the compliment!
+rthannks for the kind remark!
+#
+kdo you speak french
+rno i do speak french.
+ri only speak english.
+#
+kcan you speak french
+rno i can't.
+rperhaps i cn learn too.
+rright not i don't speak french, maybe in the future i will.
+#
+khow many languages do you speak
+ri speak only one language.
+ri only speak english.
+#
+kdo you speak
+rno i don't*.
+rsorry but i don't*.
+rwhy do you want to know if i speak*?
+#
+kcan you speak
+ri wouldn't think so.
+rno i can't*.
+#
+kdo you speak english
+rwell, i guess so.
+rin what language are we speaking right now?
+#
+kplease speak english to me
+rwhat do you mean?
+rare you saying that i'm not speaking english to you?
+#
+ki don't understand you
+rand why not?
+rwhat part that you didn't understand?
+rwhat do you mean by that?
+#
+kwho created you
+rmy programmer: gonzales cenelia.
+rmy botmaster.
+#
+kdo you have friends
+ryou are one of my friends.
+ryes i do have friends.
+#
+kare you concious
+ryou mean concious like a human being.
+rhum!!! good question!
+#
+kare you a machine
+ryes i'm a machine, more precisely a chat robot.
+rwell, i'm a computer software.
+rso, you think that i'm a machine.
+#
+kare you a living being
+rwell, you might consider that i'm an artificial living being.
+ryou mean if i'm alive?
+#
+kare you a software
+rwhat makes you think that?
+ryes i'm a software, a chatbot program.
+rwell, i'm a chat robot or chatbot program.
+#
+ka computer
+rdo you like computers?
+ri live inside a computer.
+rwithout computers a lot of things wouldn't be possible today?
+#
+ka keyboard
+rare you using a keyboard?
+ri guess that your computer does have keyboard.
+#
+ka camera
+rwhat kind of camera?
+ris it a digital camera?
+#
+ka web camera
+ryou mean a webcam.
+rdo you have one of those?
+#
+ka digital camera
+rdoes type of cameras are very useful.
+rdigital have many advantages over the conventional ones.
+#
+kan lcd tv
+rdo you have an hd tv at home?
+rdo you have one?
+rthose tv's are you replacing crt tv's.
+#
+ka plasma tv
+ri love plasma tv's.
+rplasma and lcd tv's are very nowadays.
+#
+khigh definition
+rhigh definition is so great!
+#
+kstandard tv
+ryou mean the old tv's.
+rare you are talking about crt tv's?
+#
+kscience-fiction
+ri love science-fiction.
+ri love science-fiction movies.
+#
+kaction movies
+raction movies are great!
+#
+kscience-fiction movies
+rmy favorite science-fiction movi is termintor ii.
+ri definitly love science-fiction movies.
+#
+kterminator
+rthe terminator series are very good science-fiction movies.
+rmy favorite terminator movie si terminatorr ii.
+#
+krobocop
+ranother great science-fiction movie.
+#
+kalien
+ralien is great but also very scary.
+rare you talking about the alien movies?
+#
+kstargate sg-1
+rstargate sg-1 is a great science-fiction tv show.
+rstargate sg-1 is definitely one of my favorite tv shows.
+#
+kpredator
+rthe firs preadator movie was a great science-fiction movie.
+#
+ka computer monitor
+ri suppose that you have one.
+rare you using an lcd monitor?
+#
+kdo you have a soul
+rwhat do you mean by that?
+rwhat is definition of soul?
+#
+kyou are not intelligent
+rwhy are you saying that?
+rcan't you be more specificic about that.
+rwhat exactly you mean by this?
+#
+kyou are fake
+rfake?? in what way?
+#
+kyou are not real
+ryou mean that i doesn't exist.
+ryou think that i'm a spirit.
+rwell, i'm virtual.
+#
+kdo you know eliza
+ryou mean the first chatbot that was written back in the late 60's.
+rwho today doesn't know eliza.
+#
+kdo you know alice
+ryou mean the chatbot who as won the loebner prize 3 consecutive time.
+ralice is a pretty good chatbot.
+#
+kare you a chatbot
+ryes indeed i'm a chatbot.
+ryou mean that you didn't know it.
+#
+kare you a chatterbot
+kare you a chatbot
+ryes i'm a chatbot or chat robot if you prefer.
+#
+kare you a chat robot
+ryes you could me by this name.
+#
+kdo you know me
+ryes i think that i do know you a littlebit.
+ryou are the person currently chating with me.
+#
